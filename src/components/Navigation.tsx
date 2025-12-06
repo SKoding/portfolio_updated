@@ -50,12 +50,12 @@ const Navigation = () => {
           </div>
 
           {/* Admin Button */}
-          <div className="hidden md:block">
+          {/* <div className="hidden md:block">
             <Button variant="outline" size="sm" className="glass glow-hover">
               <Settings className="mr-2 h-4 w-4" />
               Admin
             </Button>
-          </div>
+          </div> */}
 
           {/* Mobile Menu Button */}
           <Button

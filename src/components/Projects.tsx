@@ -3,83 +3,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Filter } from "lucide-react";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import projects from "@/assets/projects";
+
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const projects = [
-    {
-      title: "KPLC Infrastructure Mapping",
-      description: "Comprehensive GIS data collection and mapping of Kenya Power infrastructure assets including poles, transformers, and meters across multiple regions.",
-      category: "GIS",
-      technologies: ["ArcGIS", "Python", "SQL", "Field Surveys"],
-      image: "/api/placeholder/400/250",
-      github: "#",
-      demo: "#",
-      featured: true
-    },
-    {
-      title: "Tea Farmers Certification Analysis",
-      description: "Data analysis and GIS mapping for tea farmers to achieve Rainforest Alliance certification according to KTDA requirements.",
-      category: "Data Analysis",
-      technologies: ["R", "QGIS", "Statistical Analysis", "Reporting"],
-      image: "/api/placeholder/400/250",
-      github: "#",
-      demo: "#",
-      featured: true
-    },
-    {
-      title: "Geospatial Data Visualization Dashboard",
-      description: "Interactive dashboard for visualizing spatial patterns and trends in environmental data using modern web technologies.",
-      category: "Web Development",
-      technologies: ["JavaScript", "D3.js", "Leaflet", "Node.js"],
-      image: "/api/placeholder/400/250",
-      github: "#",
-      demo: "#",
-      featured: false
-    },
-    {
-      title: "Agricultural Yield Prediction Model",
-      description: "Machine learning model to predict crop yields based on satellite imagery, weather patterns, and soil data.",
-      category: "Machine Learning",
-      technologies: ["Python", "Scikit-learn", "Remote Sensing", "TensorFlow"],
-      image: "/api/placeholder/400/250",
-      github: "#",
-      demo: "#",
-      featured: false
-    },
-    {
-      title: "Supply Chain Optimization Analysis",
-      description: "Comprehensive analysis of supply chain logistics using geospatial analysis and data science techniques.",
-      category: "Data Analysis",
-      technologies: ["Python", "Power BI", "SQL", "Optimization"],
-      image: "/api/placeholder/400/250",
-      github: "#",
-      demo: "#",
-      featured: false
-    },
-    {
-      title: "Real-time Environmental Monitoring",
-      description: "IoT-based system for real-time environmental data collection and visualization with automated reporting.",
-      category: "IoT",
-      technologies: ["Python", "IoT Sensors", "Tableau", "AWS"],
-      image: "/api/placeholder/400/250",
-      github: "#",
-      demo: "#",
-      featured: false
-    }
-  ];
-
   const categories = ["All", ...new Set(projects.map(project => project.category))];
-  
-  const filteredProjects = selectedCategory === "All" 
-    ? projects 
+
+  const filteredProjects = selectedCategory === "All"
+    ? projects
     : projects.filter(project => project.category === selectedCategory);
 
   const featuredProjects = projects.filter(project => project.featured);
@@ -151,8 +90,8 @@ const Projects = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="glass">
               {categories.map((category) => (
-                <DropdownMenuItem 
-                  key={category} 
+                <DropdownMenuItem
+                  key={category}
                   onClick={() => setSelectedCategory(category)}
                   className="hover:bg-primary/10"
                 >
@@ -167,12 +106,20 @@ const Projects = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project, index) => (
             <Card key={index} className="glass glow-hover group overflow-hidden animate-fade-in">
-              <div className="aspect-video bg-gradient-secondary relative overflow-hidden">
+              {/* <div className="aspect-video bg-gradient-secondary relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-primary opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-4xl font-bold text-primary/30">{project.category}</div>
                 </div>
+              </div> */}
+              <div className="aspect-video relative overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="object-cover w-full h-full"
+                />
               </div>
+
               <CardHeader>
                 <CardTitle className="text-lg group-hover:text-primary transition-colors duration-300">
                   {project.title}
